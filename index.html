@@ -61,7 +61,7 @@ sample-component</p>
     "use strict";
 
     function SampleComponentController(element, config) {
-        element.innerHTML = text.from("&lt;h1&gt;Hello {name}&lt;/h1&gt;");
+        element.innerHTML = text.from("&lt;h1&gt;Hello {name}&lt;/h1&gt;", config);
     }
 
     return SampleComponentController;
@@ -87,7 +87,7 @@ automatically boot up. You should see the following:</p>
 controllers folder.</p>
 
 <h4>Live Demo</h4>
-<google-map address="1600 Pennsylvania Ave NW, Washington, DC 20500" key="AIzaSyBn_UEIKjYsaa0nBSDBh2lOSAJ-W_pC1e8" zoom="12" info="<h4>Marker Title</h4><p>Marker description.</p>"></google-map>
+<google-map address="1600 Pennsylvania Ave NW, Washington, DC 20500" key="AIzaSyBn_UEIKjYsaa0nBSDBh2lOSAJ-W_pC1e8" zoom="12" info="<h4>Marker Title</h4><p>Marker description.</p>" style="height: 400px; width: 100%"></google-map>
 
 
 <h2>
