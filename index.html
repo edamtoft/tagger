@@ -136,9 +136,9 @@ detect javascript errors.</p>
 <p>Markup:</p>
 
 <pre><code>&lt;sample-mvc-component&gt;
-    &lt;h4 model="test"&gt;&lt;/h4&gt;
-    &lt;input type="text" model="test" /&gt;
-    &lt;button event="clickHappened"&gt;Alert Me&lt;/button&gt;
+    &lt;p model=&quot;test&quot;&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;text&quot; model=&quot;test&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button event=&quot;clickHappened&quot;&gt;Alert Me&lt;/button&gt;&lt;/p&gt;
 &lt;/sample-mvc-component&gt;
 </code></pre>
 
@@ -157,7 +157,7 @@ detect javascript errors.</p>
 });
 </code></pre>
 
-<p>The H4 tag and the input will be automatically bound in real time. When you click the button, 
+<p>The top P tag and the input will be automatically bound in real time. When you click the button, 
 it will call the clickHappened function on the controller, no additional wire-up needed.</p>
 
 <p>If you include a this.modelChanged function in the controller, it will be called when any part of the
@@ -165,6 +165,14 @@ model is changed.</p>
 
 <p>This aspect is still experimental and will remain rudamentary for a while. If you need additional
 functionality, combining this with another MVC library. </p>
+
+<h4>Live Demo</h4>
+
+<sample-mvc-component>
+    <p model="test"></p>
+    <p><input type="text" model="test" /></p>
+    <p><button event="clickHappened">Alert Me</button></p>
+</sample-mvc-component>
 
 <h2>
 <a id="config-options" class="anchor" href="#config-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config Options</h2>
