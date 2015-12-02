@@ -1,9 +1,8 @@
 # Tagger
 
 Tagger is a front-end javascript runtime based around the 
-idea that you should be able to extend and modularize HTML with web components
-without having to worry about when and where to load
-what, and with the development overhead to build components. Tagger leverages
+idea that you should be able to easily extend and modularize HTML with web components
+without having to worry about loading dependencies. Tagger leverages
 the power of require.js to automatically handle dependency resolution throught
 your project, so all you have to do is create your components. Tagger does 
 not aim to be a all-encompassing framework. Though it provides a range of system 
