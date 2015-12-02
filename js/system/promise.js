@@ -1,1 +1,0 @@
-define(["system/enumerable"],function(a){"use strict";function b(b){function c(a){g&&(g=!1,h=a,void e())}function d(a){g&&(g=!1,i=a,void e())}function e(){g||a.of(j).each(function(a){void a(i,h)})}var f=this,g=!0,h=null,i=null,j=[];this.then=function(a){return g?(j.push(a),f):(void a(i,h),f)};try{void b(c,d)}catch(k){d(k)}}return{that:function(a){return new b(a)}}});
