@@ -1,0 +1,1 @@
+define([],function(){"use strict";function a(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(a){var b=16*Math.random()|0,c="x"==a?b:3&b|8;return c.toString(16)})}return{create:a,createMany:function(b){var c=[];for(var d in b)c.push(a());return c}}});
