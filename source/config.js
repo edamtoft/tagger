@@ -2,7 +2,7 @@
 
   "use strict";
 
-  var moduleRoot = "/dist/";
+  var moduleRoot = "bin/";
   
   requirejs.config({
     baseUrl: moduleRoot,

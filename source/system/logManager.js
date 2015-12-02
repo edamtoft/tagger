@@ -45,7 +45,7 @@ define([
     this.debug = function (message) {
       message = text.from("{0} : [{1}] DEBUG: {2}", utcDate(), logType, text.from.apply(this, arguments));
       logManager.append(message);
-      if (logManager.logLevel <= logManager.logLevels.DEBUG) {
+      if (logManager.logLevel <= logManager.levels.DEBUG) {
         print(message, "color: grey;");
       }
     };
@@ -53,7 +53,7 @@ define([
     this.info = function (message) {
       message = text.from("{0} : [{1}] INFO: {2}", utcDate(), logType, text.from.apply(this, arguments));
       logManager.append(message);
-      if (logManager.logLevel <= logManager.logLevels.INFO) {
+      if (logManager.logLevel <= logManager.levels.INFO) {
         print(message, "color: blue;");
       }
     };
@@ -61,7 +61,7 @@ define([
     this.warn = function (message) {
       message = text.from("{0} : [{1}] WARN {2}", utcDate(), logType, text.from.apply(this, arguments));
       logManager.append(message);
-      if (logManager.logLevel <= logManager.logLevels.WARN) {
+      if (logManager.logLevel <= logManager.levels.WARN) {
         print(message, "color: yellow;");
       }
     };
@@ -69,7 +69,7 @@ define([
     this.error = function (message) {
       message = text.from("{0} : [{1}] ERROR {2}", utcDate(), logType, text.from.apply(this, arguments));
       logManager.append(message);
-      if (logManager.logLevel <= logManager.logLevels.ERROR) {
+      if (logManager.logLevel <= logManager.levels.ERROR) {
         print(message, "color: red;");
       }
     };
