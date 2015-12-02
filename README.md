@@ -91,7 +91,7 @@ That's fine too. You just won't get automatic compression / optimization checks 
 Download just the "bin" folder (the whole folder, not just tagger.js), and start writing controllers in the controllers folder. Feel free to delete the samples.
 
 
-## Build in MVC Functionality
+## Built in MVC Functionality
 
 This is still under construction, but here's how it works:
 
