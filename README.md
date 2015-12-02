@@ -119,7 +119,7 @@ define([], function() {
 });
 ```
 The H4 tag and the input will be automatically bound in real time. When you click the button, 
-it will call the clickHandles function on the controller, no additional wire-up needed.
+it will call the clickHappened function on the controller, no additional wire-up needed.
 
 If you include a this.modelChanged function in the controller, it will be called when any part of the
 model is changed.
