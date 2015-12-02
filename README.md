@@ -40,7 +40,7 @@ define([
 	"use strict";
 	
 	function SampleComponentController(element, config) {
-		element.innerHTML = text.from("<h1>Hello {name}</h1>");
+		element.innerHTML = text.from("<h1>Hello {name}</h1>", config);
 	}
 	
 	return SampleComponentController;
