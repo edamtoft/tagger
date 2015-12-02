@@ -1,0 +1,34 @@
+{
+  "name": "tagger",
+  "version": "1.0.0",
+  "description": "Runtime for defining and automatically resolving custom web components.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edamtoft/tagger.git"
+  },
+  "keywords": [
+    "web",
+    "components",
+    "require",
+    "js",
+    "asynchronous",
+    "async",
+    "resolve"
+  ],
+  "author": "Eric Damtoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edamtoft/tagger/issues"
+  },
+  "homepage": "https://github.com/edamtoft/tagger#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.11.0"
+  }
+}
