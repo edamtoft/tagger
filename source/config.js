@@ -2,7 +2,7 @@
 
   "use strict";
 
-  var moduleRoot = "bin/";
+  var moduleRoot = "./";
   
   requirejs.config({
     baseUrl: moduleRoot,
@@ -11,7 +11,7 @@
     }
   });
   
-  require(["system/mvc/componentManager"], function(componentManager) {
+  require(["system/componentManager"], function(componentManager) {
     componentManager.scan();
   });
 

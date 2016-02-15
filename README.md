@@ -65,13 +65,13 @@ controllers folder.
 
 ## Installation
 
-To start, fork this repo and clone it. You will need to install node.js and grunt.
+To start, fork this repo and clone it. You will need to install node.js and gulp.
 
 to install node, goto https://nodejs.org/en/ and download and run the installer for your platform.
 
-next, open a terminal window and run the following to install grunt (the task runner/compiler for our modules):
+next, open a terminal window and run the following to install gulp (the task runner/compiler for our modules):
 ```
-npm install grunt-cli -g
+npm install gulp-cli -g
 ```
 next, navigate in the terminal to the root of this project and run:
 ```
@@ -79,53 +79,10 @@ npm install --dev
 ```
 to install the build dependencies.
 
-make your controllers in the source folder, and run "grunt" from the terminal to compile. By default, it runs jshint to
+make your controllers in the source folder, and run "gulp" from the terminal to compile. By default, it runs jshint to
 detect javascript errors.
 
 If you use Visual Studio Code, it is already set to build automatically with ctrl+shift+b.
-
-### Don't want to install anything?
-
-That's fine too. You just won't get automatic compression / optimization checks of new modules/controllers.
-
-Download just the "bin" folder (the whole folder, not just tagger.js), and start writing controllers in the controllers folder. Feel free to delete the samples.
-
-
-## Built in MVC Functionality
-
-This is still under construction, but here's how it works:
-
-Markup:
-```
-<sample-mvc-component>
-	<h4 model="test"></h4>
-	<input type="text" model="test" />
-	<button event="clickHappened">Alert Me</button>
-</sample-mvc-component>
-```
-
-Controller:
-```
-define([], function() {
-	
-	function SampleMvcController(element, config) {
-		
-		this.clickHappened = function() {
-			alert(this.model.test);
-		};
-	}
-	 	
-	return SamplMvcController;
-});
-```
-The H4 tag and the input will be automatically bound in real time. When you click the button, 
-it will call the clickHappened function on the controller, no additional wire-up needed.
-
-If you include a this.modelChanged function in the controller, it will be called when any part of the
-model is changed.
-
-This aspect is still experimental and will remain rudamentary for a while. If you need additional
-functionality, combining this with another MVC library. 
 
 ## Config Options
 
@@ -145,11 +102,15 @@ multi-word config keys are collapsed to camelCase when resolving keys from the c
 	</script>
 </google-map>
 
+## ES6 Support
+
+This library is set up to automatically transpile and minify ES6 syntax. Feel free to use classes, arrow functions, etc.
+
 ```
 
 ## System Libraries
 Tagger comes pre-installed with a number of system libraries which provide an easy-to-use and
-reusable wrappers around many common operations. These can be accessed through require-js's 
+reusable wrappers around many common operations. These can be accessed through require-js's AMD
 syntax.
 
 When defining dependencies for a controller (or other module):

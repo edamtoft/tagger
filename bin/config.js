@@ -1,1 +1,0 @@
-!function(){"use strict";var a="bin/";requirejs.config({baseUrl:a,paths:{async:"plugins/async"}}),require(["system/mvc/componentManager"],function(a){a.scan()})}();

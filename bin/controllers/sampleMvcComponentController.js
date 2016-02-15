@@ -1,1 +1,0 @@
-define([],function(){function a(a,b){this.clickHappened=function(){alert(this.model.test)}}return a});

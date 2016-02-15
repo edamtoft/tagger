@@ -1,96 +1,108 @@
 define([
-  "system/logManager"
-], function (logManager) {
+    "system/logManager",
+    "constants"
+], function (logManager, constants) {
 
-  "use strict";
+    "use strict";
 
-  var log = logManager.getLogger("Google Map Controller");
-  var addressCache = {};
+    let log = logManager.getLogger("Google Map Controller");
 
-  /*
-  <google-map address="some address" key="Apikey" zoom="4">
-  </google-map>
-  */
+    /*
+    <google-map address="some address" key="Apikey" zoom="4">
+    </google-map>
+    */
 
 
-  function MapController(element, config) {
-    var map = null;
-    var marker = null;
+    return class MapController {
 
-    this.start = function () {
-      require([
-        "async!https://maps.googleapis.com/maps/api/js?key=" + config.key
-      ], function () {
-
-        var address = config.address;
-
-        if (addressCache[address]) {
-
-          log.debug("Address geocode cache hit: '{0}'.", address);
-
-          renderMap(addressCache[address]);
-          return;
+        constructor(element, config) {
+            this.element = element;
+            this.config = config;
         }
 
-        var geocoder = new google.maps.Geocoder();
+        start() {
+            require([
+                "async!https://maps.googleapis.com/maps/api/js?key=" + constants.googleMapsApiKey
+            ], () => void this.initializeMap(window.google.maps));
+        }
 
-        log.debug("Geocoding address '{0}'", address);
+        initializeMap(mapsApi) {
 
-        geocoder.geocode({
-          address: address
-        }, function (results, status) {
-          if (status !== google.maps.GeocoderStatus.OK) {
-            log.error("Geocoding failed with code {0}", status);
-            return;
-          }
+            if (!mapsApi) {
+                throw new Error("Unable to load Google Maps API");
+            }
 
-          var location = results[0].geometry.location;
+            let coordinates = this.config.coordinates;
 
-          addressCache[address] = location;
+            if (coordinates) {
+                this.renderMap(mapsApi, coordinates);
+                return;
+            }
 
-          log.debug("Got geocode result {0}.", location);
+            let address = this.config.address;
+            let geocoder = new mapsApi.Geocoder();
 
-          renderMap(location);
-        });
-      });
+            log.debug("Geocoding address '{0}'", address);
+
+
+            geocoder.geocode({
+                address: address
+            }, (results, status) => {
+                if (status !== mapsApi.GeocoderStatus.OK) {
+                    log.error("Geocoding failed with code {0}", status);
+                    return;
+                }
+
+                let location = results[0].geometry.location;
+
+
+                log.debug("Got geocode result {0}.", location);
+
+                this.renderMap(mapsApi, location);
+            });
+
+        }
+
+        renderMap(mapsApi, location) {
+            let getType = type => {
+                switch (type) {
+                    case "road":
+                        return mapsApi.MapTypeId.ROADMAP;
+                    case "terrain":
+                        return mapsApi.MapTypeId.TERRAIN;
+                    case "satellite":
+                        return mapsApi.MapTypeId.SATTELITE;
+                    default:
+                        return mapsApi.MapTypeId.ROADMAP;
+                }
+            };
+
+            let map = new mapsApi.Map(this.element, {
+                center: location,
+                zoom: this.config.zoom || 16,
+                scrollwheel: false,
+                zoomControl: false,
+                draggable: false,
+                navigationControl: false,
+                mapTypeControl: false,
+                mapTypeId: getType(this.config.type)
+            });
+
+            let marker = new mapsApi.Marker({
+                map: map,
+                position: location,
+                animation: mapsApi.Animation.DROP
+            });
+
+            if (this.config.info) {
+                let infowindow = new mapsApi.InfoWindow({
+                    content: this.config.info
+                });
+
+                marker.addListener("click", e => infowindow.open(map, marker));
+
+                infowindow.open(map, marker);
+            }
+        }
     };
-
-    function renderMap(location) {
-
-      log.debug("Rendering map.");
-
-      map = new google.maps.Map(element, {
-        center: location,
-        zoom: config.zoom || 16,
-        scrollwheel: false,
-        zoomControl: false,
-        draggable: false,
-        navigationControl: false,
-        mapTypeControl: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-      marker = new google.maps.Marker({
-        map: map,
-        position: location,
-        animation: google.maps.Animation.DROP
-      });
-
-      if (config.info) {
-        var infowindow = new google.maps.InfoWindow({
-          content: config.info
-        });
-
-        map.addListener("mouseover", function () {
-          infowindow.open(map, marker);
-        });
-
-        map.addListener("click", function () {
-          infowindow.open(map, marker);
-        });
-      }
-    }
-  }
-
-  return MapController;
 });
